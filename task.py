@@ -15,8 +15,14 @@ class Student:
     def average_grade(self,subjectName):
         return sum(self.grades[subjectName])/len(self.grades[subjectName])
 
+    def average_attendance(self,subjectName):
+        sum1=0
+        for i in self.attendance[subjectName]:
+            sum1+=i["isPresent"]
 
-    def add_attendance(self,subjectName,isPresent=False):
+        return sum1/len(self.attendance[subjectName])
+
+    def add_attendance(self,subjectName,isPresent=0):
         self.attendance[subjectName].append({"isPresent":isPresent})
 
     def __repr__(self):
@@ -25,10 +31,11 @@ class Student:
 if __name__ == "__main__":
     testStudent= Student("john","xyz")
     testStudent.add_subject("math")
-    testStudent.add_attendance("math",True)
+    testStudent.add_attendance("math",1)
     testStudent.add_grade("math",3)
     testStudent.add_grade("math",4)
     testStudent.add_attendance("math")
     print("avg grade:",testStudent.average_grade("math"))
+    print("avg average_attendance:",testStudent.average_attendance("math"))
 
     print(testStudent)
